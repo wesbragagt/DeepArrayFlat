@@ -17,9 +17,9 @@ function flatten (arr) {
   // we need a new array to be returned when the function is done
   const newArray = []
   // create a recursive function to tap into the nested arrays and pull those elements out
-  function recurseThrough (nestedArr) {
+  const recurseThrough = nestedArr => {
     // iterate through each element of the current array however how many times it takes
-    for (let element of nestedArr) {
+    nestedArr.forEach(element => {
       // we check if within the nested array we have another array
       if (isArray(element)) {
         // execute the recurseThrough function within the nested array
@@ -29,12 +29,10 @@ function flatten (arr) {
       else {
         newArray.push(element)
       }
-    }
+    })
   }
   recurseThrough(arr)
   return newArray
 }
-const lineBreak = '='.repeat(100)
 console.log('before: \n', arr)
-console.log(lineBreak)
 console.log('after: \n', flatten(arr))
